@@ -8,6 +8,6 @@ setup(name='bmi-live-2018',
       license='MIT',
       description='Source for the 2018 BMI Live clinic',
       long_description=open('README.md').read(),
-      install_requires=('numpy', 'pyyaml'),
+      install_requires=('numpy', 'pyyaml', 'basic-modeling-interface'),
       packages=find_packages(exclude=['*.tests']),
 )
