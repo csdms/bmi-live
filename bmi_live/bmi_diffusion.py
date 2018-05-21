@@ -112,7 +112,7 @@ class BmiDiffusion(Bmi):
         return self._var_units[var_name]
 
     def get_var_nbytes(self, var_name):
-        """Get units of variable.
+        """Get size, in bytes, of the given variable.
 
         Parameters
         ----------
