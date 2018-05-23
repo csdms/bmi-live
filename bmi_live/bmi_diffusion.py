@@ -230,8 +230,8 @@ class BmiDiffusion(Bmi):
         src : array_like
             Array of new values.
         """
-        val = self.get_value_ref(var_name)
-        val[:] = src
+        ref = self.get_value_ref(var_name)
+        ref[:] = src
 
     # def set_value_at_indices(self, var_name, src, indices):
     #     """Set model values at particular indices.
@@ -245,8 +245,8 @@ class BmiDiffusion(Bmi):
     #     indices : array_like
     #         Array of indices.
     #     """
-    #     val = self.get_value_ref(var_name)
-    #     val.flat[indices] = src
+    #     ref = self.get_value_ref(var_name)
+    #     ref.flat[indices] = src
 
     def get_component_name(self):
         """Name of the component."""
