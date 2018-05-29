@@ -1,3 +1,4 @@
+# A Diffusion model config file with a larger grid for visualization. 
 nx: 30
 ny: 20
 dx: 1.0

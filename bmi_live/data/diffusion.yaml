@@ -1,3 +1,4 @@
+# A simple config file for the BMI Live Diffusion model.
 nx: 9
 ny: 7
 dx: 1.0
