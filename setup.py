@@ -10,4 +10,5 @@ setup(name='bmi-live-2018',
       long_description=open('README.md').read(),
       install_requires=('numpy', 'pyyaml', 'basic-modeling-interface'),
       packages=find_packages(exclude=['*.tests']),
+      package_data={'bmi_live':['data/*']},
 )
