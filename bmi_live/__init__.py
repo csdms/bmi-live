@@ -1,4 +1,4 @@
-"""BMI Live 2018"""
+"""BMI Live clinic"""
 import os
 
 
