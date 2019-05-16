@@ -1,7 +1,7 @@
 # BMI Live
 
-Code for the **BMI Live** clinic
-held at the
+Code, slides, and Jupyter Notebook examples
+for the **BMI Live** clinic held at the
 [2019 CSDMS Annual Meeting](https://csdms.colorado.edu/wiki/CSDMS_meeting_2019),
 May 21-23, in Boulder, Colorado.
 
@@ -10,7 +10,6 @@ May 21-23, in Boulder, Colorado.
 Given a model, wrap it in a
 [Basic Model Interface (BMI)](http://bmi.readthedocs.io)
 in realtime.
-We also hope show some best practices in Python development.
 
 ## The Plan
 
@@ -18,7 +17,7 @@ We also hope show some best practices in Python development.
 1. View the list of BMI methods and their signatures
    at http://bmi.readthedocs.io
 1. Together, implement the BMI methods for the model!
-1. Test our results in a Jupyter Notebook (and make a plot,
+1. Evaluate our results in a Jupyter Notebook (and make a plot,
    maybe using widgets!)
 
 ## The Requirements
