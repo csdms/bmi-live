@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='bmi-live',
-      version='0.1',
+      version='0.2019',
       author='Mark Piper',
       author_email='mark.piper@colorado.edu',
       license='MIT',
