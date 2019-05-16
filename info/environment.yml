@@ -1,0 +1,16 @@
+# A conda env for the BMI Live! clinic
+#
+# Install with:
+#
+#    $ conda env create --file=environment.yml
+
+name: live
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - pyyaml
+  - bmipy
+  - bmi-tester
+  - notebook
