@@ -8,7 +8,11 @@ setup(name='bmi-live',
       license='MIT',
       description='Code, documentation, and Notebooks for the BMI Live clinic',
       long_description=open('README.md').read(),
-      install_requires=('numpy', 'pyyaml', 'basic-modeling-interface'),
+      install_requires=(
+          'numpy',
+          'pyyaml',
+          'bmipy',
+      ),
       packages=find_packages(exclude=['*.tests']),
       package_data={'bmi_live':['data/*']},
 )
