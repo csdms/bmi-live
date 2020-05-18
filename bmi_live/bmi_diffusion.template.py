@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """Basic Model Interface (BMI) for the Diffusion model."""
+import numpy
+from typing import Tuple
 
 from bmipy import Bmi
 from .diffusion import Diffusion
@@ -18,7 +20,7 @@ class BmiDiffusion(Bmi):
         self._grids = {}
         self._grid_type = {}
 
-    def finalize(self):
+    def finalize(self) -> None:
         """Perform tear-down tasks for the model.
 
         Perform all tasks that take place after exiting the model's time
@@ -27,7 +29,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("finalize")
 
-    def get_component_name(self):
+    def get_component_name(self) -> str:
         """Name of the component.
 
         Returns
@@ -37,7 +39,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_component_name")
 
-    def get_current_time(self):
+    def get_current_time(self) -> float:
         """Current time of the model.
 
         Returns
@@ -47,7 +49,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_current_time")
 
-    def get_end_time(self):
+    def get_end_time(self) -> float:
         """End time of the model.
 
         Returns
@@ -57,7 +59,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_end_time")
 
-    def get_grid_edge_count(self, grid):
+    def get_grid_edge_count(self, grid: int) -> int:
         """Get the number of edges in the grid.
 
         Parameters
@@ -72,7 +74,9 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_edge_count")
 
-    def get_grid_edge_nodes(self, grid, edge_nodes):
+    def get_grid_edge_nodes(
+        self, grid: int, edge_nodes: numpy.ndarray
+    ) -> numpy.ndarray:
         """Get the edge-node connectivity.
 
         Parameters
@@ -91,7 +95,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_edge_nodes")
 
-    def get_grid_face_count(self, grid):
+    def get_grid_face_count(self, grid: int) -> int:
         """Get the number of faces in the grid.
 
         Parameters
@@ -106,7 +110,28 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_face_count")
 
-    def get_grid_face_nodes(self, grid, face_nodes):
+    def get_grid_face_edges(
+        self, grid: int, face_edges: numpy.ndarray
+    ) -> numpy.ndarray:
+        """Get the face-edge connectivity.
+
+        Parameters
+        ----------
+        grid : int
+            A grid identifier.
+        face_edges : ndarray of int
+            A numpy array to place the face-edge connectivity.
+
+        Returns
+        -------
+        ndarray of int
+            The input numpy array that holds the face-edge connectivity.
+        """
+        raise NotImplementedError("get_grid_face_edges")
+
+    def get_grid_face_nodes(
+        self, grid: int, face_nodes: numpy.ndarray
+    ) -> numpy.ndarray:
         """Get the face-node connectivity.
 
         Parameters
@@ -125,7 +150,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_face_nodes")
 
-    def get_grid_node_count(self, grid):
+    def get_grid_node_count(self, grid: int) -> int:
         """Get the number of nodes in the grid.
 
         Parameters
@@ -140,7 +165,9 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_node_count")
 
-    def get_grid_nodes_per_face(self, grid, nodes_per_face):
+    def get_grid_nodes_per_face(
+        self, grid: int, nodes_per_face: numpy.ndarray
+    ) -> numpy.ndarray:
         """Get the number of nodes for each face.
 
         Parameters
@@ -157,7 +184,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_nodes_per_face")
 
-    def get_grid_origin(self, grid, origin):
+    def get_grid_origin(self, grid: int, origin: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates for the lower-left corner of the computational grid.
 
         Parameters
@@ -176,7 +203,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_origin")
 
-    def get_grid_rank(self, grid):
+    def get_grid_rank(self, grid: int) -> int:
         """Get number of dimensions of the computational grid.
 
         Parameters
@@ -191,7 +218,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_rank")
 
-    def get_grid_shape(self, grid, shape):
+    def get_grid_shape(self, grid: int, shape: numpy.ndarray) -> numpy.ndarray:
         """Get dimensions of the computational grid.
 
         Parameters
@@ -208,7 +235,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_shape")
 
-    def get_grid_size(self, grid):
+    def get_grid_size(self, grid: int) -> int:
         """Get the total number of elements in the computational grid.
 
         Parameters
@@ -223,7 +250,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_size")
 
-    def get_grid_spacing(self, grid, spacing):
+    def get_grid_spacing(self, grid: int, spacing: numpy.ndarray) -> numpy.ndarray:
         """Get distance between nodes of the computational grid.
 
         Parameters
@@ -240,7 +267,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_spacing")
 
-    def get_grid_type(self, grid):
+    def get_grid_type(self, grid: int) -> str:
         """Get the grid type as a string.
 
         Parameters
@@ -255,7 +282,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_type")
 
-    def get_grid_x(self, grid, x):
+    def get_grid_x(self, grid: int, x: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the x direction.
 
         Parameters
@@ -272,7 +299,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_x")
 
-    def get_grid_y(self, grid, y):
+    def get_grid_y(self, grid: int, y: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the y direction.
 
         Parameters
@@ -289,7 +316,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_y")
 
-    def get_grid_z(self, grid, z):
+    def get_grid_z(self, grid: int, z: numpy.ndarray) -> numpy.ndarray:
         """Get coordinates of grid nodes in the z direction.
 
         Parameters
@@ -306,7 +333,17 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_grid_z")
 
-    def get_input_var_names(self):
+    def get_input_item_count(self) -> int:
+        """Count of a model's input variables.
+
+        Returns
+        -------
+        int
+          The number of input variables.
+        """
+        raise NotImplementedError("get_input_item_count")
+
+    def get_input_var_names(self) -> Tuple[str]:
         """List of a model's input variables.
 
         Input variable names must be CSDMS Standard Names, also known
@@ -328,7 +365,17 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_input_var_names")
 
-    def get_output_var_names(self):
+    def get_output_item_count(self) -> int:
+        """Count of a model's output variables.
+
+        Returns
+        -------
+        int
+          The number of output variables.
+        """
+        raise NotImplementedError("get_output_item_count")
+
+    def get_output_var_names(self) -> Tuple[str]:
         """List of a model's output variables.
 
         Output variable names must be CSDMS Standard Names, also known
@@ -341,7 +388,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_output_var_names")
 
-    def get_start_time(self):
+    def get_start_time(self) -> float:
         """Start time of the model.
 
         Model times should be of type float.
@@ -353,7 +400,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_start_time")
 
-    def get_time_step(self):
+    def get_time_step(self) -> float:
         """Current time step of the model.
 
         The model time step should be of type float.
@@ -365,7 +412,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_time_step")
 
-    def get_time_units(self):
+    def get_time_units(self) -> str:
         """Time units of the model.
 
         Returns
@@ -379,7 +426,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_time_units")
 
-    def get_value(self, name, dest):
+    def get_value(self, name: str, dest: numpy.ndarray) -> numpy.ndarray:
         """Get a copy of values of the given variable.
 
         This is a getter for the model, used to access the model's
@@ -400,7 +447,9 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_value")
 
-    def get_value_at_indices(self, name, dest, inds):
+    def get_value_at_indices(
+        self, name: str, dest: numpy.ndarray, inds: numpy.ndarray
+    ) -> numpy.ndarray:
         """Get values at particular indices.
 
         Parameters
@@ -419,7 +468,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_value_at_indices")
 
-    def get_value_ptr(self, name):
+    def get_value_ptr(self, name: str) -> numpy.ndarray:
         """Get a reference to values of the given variable.
 
         This is a getter for the model, used to access the model's
@@ -438,7 +487,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_value_ptr")
 
-    def get_var_grid(self, name):
+    def get_var_grid(self, name: str) -> int:
         """Get grid identifier for the given variable.
 
         Parameters
@@ -453,7 +502,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_grid")
 
-    def get_var_itemsize(self, name):
+    def get_var_itemsize(self, name: str) -> int:
         """Get memory use for each array element in bytes.
 
         Parameters
@@ -468,7 +517,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_itemsize")
 
-    def get_var_location(self, name):
+    def get_var_location(self, name: str) -> str:
         """Get the grid element type that the a given variable is defined on.
 
         The grid topology can be composed of *nodes*, *edges*, and *faces*.
@@ -482,8 +531,8 @@ class BmiDiffusion(Bmi):
 
         *face*
             A plane or surface enclosed by a set of edges. In a 2D
-            horizontal application one may consider the word "polygon",
-            but in the hierarchy of elements the word "face" is most common.
+            horizontal application one may consider the word “polygon”,
+            but in the hierarchy of elements the word “face” is most common.
 
         Parameters
         ----------
@@ -504,7 +553,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_location")
 
-    def get_var_nbytes(self, name):
+    def get_var_nbytes(self, name: str) -> int:
         """Get size, in bytes, of the given variable.
 
         Parameters
@@ -519,7 +568,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_nbytes")
 
-    def get_var_type(self, name):
+    def get_var_type(self, name: str) -> str:
         """Get data type of the given variable.
 
         Parameters
@@ -534,7 +583,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_type")
 
-    def get_var_units(self, name):
+    def get_var_units(self, name: str) -> str:
         """Get units of the given variable.
 
         Standard unit names, in lower case, should be used, such as
@@ -563,7 +612,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("get_var_units")
 
-    def initialize(self, config_file):
+    def initialize(self, config_file: str) -> None:
         """Perform startup tasks for the model.
 
         Perform all tasks that take place before entering the model's time
@@ -584,22 +633,9 @@ class BmiDiffusion(Bmi):
         recommended. A template of a model's configuration file
         with placeholder values is used by the BMI.
         """
-        self._model = Diffusion(config_file=filename)
+        raise NotImplementedError("initialize")
 
-        self._values = {
-            'plate_surface__temperature': self._model.temperature,
-        }
-        self._var_units = {
-            'plate_surface__temperature': 'C'
-        }
-        self._grids = {
-            0: ['plate_surface__temperature']
-        }
-        self._grid_type = {
-            0: 'uniform_rectilinear_grid'
-        }
-
-    def set_value(self, name, values):
+    def set_value(self, name: str, values: numpy.ndarray) -> None:
         """Specify a new value for a model variable.
 
         This is the setter for the model, used to change the model's
@@ -616,7 +652,9 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("set_value")
 
-    def set_value_at_indices(self, name, inds, src):
+    def set_value_at_indices(
+        self, name: str, inds: numpy.ndarray, src: numpy.ndarray
+    ) -> None:
         """Specify a new value for a model variable at particular indices.
 
         Parameters
@@ -630,7 +668,7 @@ class BmiDiffusion(Bmi):
         """
         raise NotImplementedError("set_value_at_indices")
 
-    def update(self):
+    def update(self) -> None:
         """Advance model state by one time step.
 
         Perform all tasks that take place within one pass through the model's
@@ -640,4 +678,14 @@ class BmiDiffusion(Bmi):
         method can return with no action.
         """
         raise NotImplementedError("update")
+
+    def update_until(self, time: float) -> None:
+        """Advance model state until the given time.
+
+        Parameters
+        ----------
+        time : float
+            A model time later than the current model time.
+        """
+        raise NotImplementedError("update_until")
 
